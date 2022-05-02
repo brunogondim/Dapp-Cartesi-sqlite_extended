@@ -25,12 +25,6 @@
 
 # This dataset consists of 1338 rows.
 
-# sql statements exemples
-
-# INSERT INTO Medical VALUES ('35', 'male', '32.4', '0', 'no', 'southeast', '10000.0000' )
-
-# INSERT INTO Medical VALUES ('35', 'male', '32.4', '0', 'no', 'southeast', '10000.0000' )
-
 # more datails about the dataset ---------------------------------------------------------
 
 # https://www.kaggle.com/datasets/mirichoi0218/insurance?select=insurance.csv
