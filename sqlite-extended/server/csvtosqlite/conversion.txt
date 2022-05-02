@@ -1,0 +1,24 @@
+#https://tableplus.com/blog/2018/07/sqlite-how-to-import-csv-file-into-sqlite-table.html
+
+
+SQLite - How to import a CSV file into SQLite table?
+
+July 17, 2018
+Using SQLite command-line tool
+
+Run this command to specify the csv file type and table
+
+sqlite> .mode csv table_name
+sqlite> .import file_name.csv table_name
+
+If it’s a SQL file, you can import it by this command:
+
+sqlite> .read file_name.sql
+
+
+
+
+############################### outros comandos
+
+nome das colunas:
+PRAGMA table_info(medical)

@@ -1,8 +1,10 @@
-# SQLite DApp
+# SQLite-extended DApp
 
-This example shows how to build and interact with a Cartesi Rollups application that internally runs an [SQLite database](https://www.sqlite.org/index.html). You can send any valid SQL command as input and if it produces results you get those back as a notice.
+This example extends the SQLite Dapp and shows how to build and interact with a Cartesi Rollups application that acts transparently on personal data, seeking to comply with the requirements of the GDPR - General Data Protection Regulation. 
 
-The example highlights how common mainstream technologies such as an SQL database can be easily used in a Cartesi DApp. It also introduces how errors should be handled by an application, in the case that invalid SQL statements are submitted.
+There is a alread created database with a table named medical. You can perform predefined operations to create, update and delete records, acting as the data subject. On the other hand, you can also operate as a data controller/processor to perform queries and build new datasets for distribution or specific processing. Data subject and data controller/processor are actors within the definition of GDPR - General Data Protection Regulation
+
+The example highlights some aspects of GDPR, such as the guarantee of the data subject to no longer have their data in a dataset or the guarantee of their right to know how their data is being used, as well as the end consumers of the data will also be guaranteed of legitimate origin on the data used. Right to be forgotten and other security aspects are not present in this conceptual Dapp.
 
 ## Building the environment
 
@@ -15,7 +17,7 @@ $ git clone https://github.com/cartesi/rollups-examples.git
 Then, build the back-end for the example:
 
 ```shell
-$ cd rollups-examples/sqlite
+$ cd rollups-examples/sqlite-extended
 $ make machine
 ```
 
@@ -52,17 +54,17 @@ $ docker-compose down -v
 
 With the infrastructure in place, you can interact with the application using a set of Hardhat tasks. 
 
-First, go to a separate terminal window, switch to the `echo/contracts` directory, and run `yarn`:
+First, go to a separate terminal window, switch to the `sqlite-extended/contracts` directory, and run `yarn`:
 
 ```shell
-$ cd sqlite/contracts/
+$ cd contracts/
 $ yarn
 ```
 
-Then, send an input as follows to create a table in our DApp's internal database:
+Then, send an input as follows to insert your anonymous personal data into our DApp's internal database:
 
 ```shell
-$ npx hardhat --network localhost sqlite:addInput --input "CREATE TABLE Persons (name text, age int)"
+$ npx hardhat --network localhost sqlite:addInput --input "INSERT INTO Medical VALUES ('35', 'male', '32.4', '0', 'no', 'southeast', '10000.0000' )"
 ```
 
 The input will have been accepted when you receive a response similar to the following one:
@@ -120,7 +122,7 @@ The next step is to run the SQLite server in your machine. The application is wr
 In order to start the server, run the following commands in a dedicated terminal:
 
 ```shell
-$ cd sqlite/server/
+$ cd sqlite-extended/server/
 $ python3 -m venv .env
 $ . .env/bin/activate
 $ pip install -r requirements.txt
@@ -134,11 +136,13 @@ The final command, which effectively starts the server, can also be configured i
 After the server successfully starts, it should print an output like the following:
 
 ```
-[2022-01-21 12:38:23,971] INFO in sqlite: HTTP dispatcher url is http://127.0.0.1:5004
-[2022-01-21 12:38:23 -0500] [79032] [INFO] Starting gunicorn 19.9.0
-[2022-01-21 12:38:23 -0500] [79032] [INFO] Listening at: http://0.0.0.0:5003 (79032)
-[2022-01-21 12:38:23 -0500] [79032] [INFO] Using worker: sync
-[2022-01-21 12:38:23 -0500] [79035] [INFO] Booting worker with pid: 79035
+[2022-05-02 00:39:21 -0300] [398197] [INFO] Starting gunicorn 19.9.0
+[2022-05-02 00:39:21 -0300] [398197] [INFO] Listening at: http://0.0.0.0:5003 (398197)
+[2022-05-02 00:39:21 -0300] [398197] [INFO] Using worker: sync
+/usr/lib/python3.8/os.py:1023: RuntimeWarning: line buffering (buffering=1) isn't supported in binary mode, the default buffer size will be used
+  return io.open(fd, *args, **kwargs)
+[2022-05-02 00:39:21 -0300] [398199] [INFO] Booting worker with pid: 398199
+[2022-05-02 00:39:25,108] INFO in sqlite: HTTP dispatcher url is http://127.0.0.1:5004
 ```
 
 After that, you can interact with the application normally [as explained above](#interacting-with-the-application).

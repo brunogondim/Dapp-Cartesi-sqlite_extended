@@ -6,6 +6,19 @@
     "configurations": [
         {
             "env": {
+                "HTTP_DISPATCHER_URL": "http://127.0.0.1:5004",
+                //"GEVENT_SUPPORT": "False"
+            },
+            "cwd": "${workspaceFolder}/sqlite-extended/server",
+            "name": "Simple SQLite-extended DApp",
+            "type": "python",
+            "request": "launch",
+            "program": ".env/bin/gunicorn",
+            "gevent": true,
+            "args": ["--timeout", "0", "--reload", "--workers", "1", "--bind=0.0.0.0:5003", "sqlite:app"],
+        },
+        {
+            "env": {
                 "HTTP_DISPATCHER_URL": "http://127.0.0.1:5004"
             },
             "cwd": "${workspaceFolder}/echo/server",
