@@ -125,6 +125,7 @@ def advance():
             # if there is a result, converts it to JSON and posts it as a notice
             payloadJson = json.dumps(result)
             payload = str2hex(payloadJson)
+            app.logger.info(payload)
             app.logger.info(f"Adding notice with payload: {payloadJson}")
             response = requests.post(dispatcher_url + "/notice", json={"payload": payload})
             app.logger.info(f"Received notice status {response.status_code} body {response.content}")
