@@ -2,7 +2,7 @@
 
 This example extends the SQLite Dapp and shows how to build and interact with a Cartesi Rollups application that acts transparently on personal data, seeking to comply with the requirements of the GDPR - General Data Protection Regulation. 
 
-There is a alread created database with a table named medical. You can perform predefined operations to create, update and delete records, acting as the data subject. On the other hand, you can also operate as a data controller/processor to perform queries and build new datasets for distribution or specific processing. Data subject and data controller/processor are actors within the definition of GDPR - General Data Protection Regulation
+There is a already created database with a table named medical. You can perform predefined operations to create, update and delete records, acting as the data subject. On the other hand, you can also operate as a data controller/processor to perform queries and build new datasets for distribution or specific processing. Data subject and data controller/processor are actors within the definition of GDPR - General Data Protection Regulation
 
 The example highlights some aspects of GDPR, such as the guarantee of the data subject to no longer have their data in a dataset or the guarantee of their right to know how their data is being used, as well as the end consumers of the data will also be guaranteed of legitimate origin on the data used. Right to be forgotten and other security aspects are not present in this conceptual Dapp.
 
@@ -82,17 +82,19 @@ $ npx hardhat --network localhost sqlite:addInput --input "DELETE FROM Medical W
 
 Note that the query's results will not be retrieved immediately. Rather, whenever a submitted input corresponds to a valid SQL query, the DApp will make the corresponding results available in the form of a _notice_.
 
-To make datasets based on horizontal filter, as BRAID architecture:
+To make datasets based on horizontal filter, as BRAID architecture*:
 
 ```shell
 npx hardhat --network localhost sqlite:addInput --input "CREATE TABLE Horizontal_Filter (age text, sex text, bmi text, children text, smoker text, region text, charges text)"
 npx hardhat --network localhost sqlite:addInput --input "INSERT INTO Horizontal_Filter SELECT * FROM Medical WHERE sex='male'"
 ```
-to make datasets based on vertical filter, as BRAID architecture:
+to make datasets based on vertical filter, as BRAID architecture*:
 
 ```shell
 npx hardhat --network localhost sqlite:addInput --input "CREATE TABLE Vertical_Filter (age text, bmi text, charges text)"
 npx hardhat --network localhost sqlite:addInput --input "INSERT INTO Vertical_Filter (age, bmi, charges) SELECT age, bmi, charges FROM Medical"
+
+*Refer to: AMNESIA: A Technical Solution towards GDPR-compliant Machine Learning. January 2020. DOI:10.5220/0008916700210032. Conference: 6th International Conference on Information Systems Security and Privacy
 
 These datasets can be consumed by solutions inside or outside the cartesi machine, using only simple select statements
 
