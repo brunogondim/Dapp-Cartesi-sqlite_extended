@@ -66,6 +66,18 @@ Then, send an input as follows to insert your anonymous personal data into our D
 ```shell
 $ npx hardhat --network localhost sqlite:addInput --input "INSERT INTO Medical VALUES ('35', 'male', '32.4', '0', 'no', 'southeast', '10000.0000' )"
 ```
+column names are as follows 
+```
+# 0,age,TEXT,0,,0
+# 1,sex,TEXT,0,,0
+# 2,bmi,TEXT,0,,0
+# 3,children,TEXT,0,,0
+# 4,smoker,TEXT,0,,0
+# 5,region,TEXT,0,,0
+# 6,charges,TEXT,0,,0
+
+*bmi = kg/m² 
+```
 
 The input will have been accepted when you receive a response similar to the following one:
 
@@ -92,11 +104,18 @@ Or
 ```shell
 $ npx hardhat --network localhost sqlite:getNotices --epoch 0 --payload string
 ```
-The response should be something like this:
+
+Assuming the command "SELECT * FROM Medical" was performed, the response should be something like this:
 
 ```shell
-
+{"session_id":"default_rollups_id","epoch_index":"0","input_index":"1","notice_index":"0","payload":"[[\"19\", \"female\", \"27.9\", \"0\", \"yes\", \"southwest\", \"16884.924\"], [\"18\", \"male\", \"33.77\", \"1\", \"no\", \"southeast\", \"1725.5523\"], [\"28\", \"male\", \"33\", \"3\", \"no\", \"southeast\", \"4449.462\"], [\"33\", \"male\", \"22.705\", \"0\", \"no\", \"northwest\", \"21984.47061\"], [\"32\", \"male\", \"28.88\", \"0\", \"no\", \"northwest\", \"3866.8552\"], [\"31\", \"female\", \"25.74\", \"0\", \"no\", \"southeast\", \"3756.6216\"], [\"46\", \"female\", \"33.44\", \"1\", \"no\", \"southeast\", \"8240.5896\"], [\"37\", \"female\", \"27.74\", \"3\", \"no\", \"northwest\", \"7281.5056\"], [\"37\", \"male\", \"29.83\", \"2\", \"no\", \"northeast\", \"6406.4107\"], [\"60\", \"female\", \"25.84\", \"0\", \"no\", \"northwest\", \"28923.13692\"], [\"25\", \"male\", \"26.22\", \"0\", \"no\", \"northeast\", \"2721.3208\"], [\"62\", \"female\", \"26.29\", \"0\", \"yes\", \"southeast\", \"27808.7251\"], [\"23\", \"male\", \"34.4\", \"0\", \"no\", \"southwest\", \"1826.843\"], [\"56\", \"female\", \"39.82\", \"0\", \"no\", \"southeast\", \"11090.7178\"], [\"27\", \"male\", \"42.13\", \"0\", \"yes\", \"southeast\", \"39611.7577\"], [\"19\", \"male\", \"24.6\", \"1\", \"no\", \"southwest\", \"1837.237\"], [\"52\", \"female\", \"30.78\", \"1\", \"no\", \"northeast\", \"10797.3362\"], [\"23\", \"male\", \"23.845\", \"0\", \"no\", \"northeast\", \"2395.17155\"], [\"56\", \"male\", \"40.3\", \"0\", \"no\", \"southwest\", \"10602.385\"], [\"30\", \"male\", \"35.3\", \"0\", \"yes\", \"southwest\", \"36837.467\"], [\"60\", \"female\", \"36.005\", \"0\", \"no\", \"northeast\", \"13228.84695\"], [\"30\", \"female\", \"32.4\", \"1\", \"no\", \"southwest\", \"4149.736\"], [\"18\", \"male\", \"34.1\", \"0\", \"no\", \"southeast\", \"1137.011\"], [\"34\", \"female\", \"31.92\", \"1\", \"yes\", \"northeast\", \"37701.8768\"], [\"37\", \"male\", \"28.025\", \"2\", \"no\", \"northwest\", \"6203.90175\"], [\"59\", \"female\", \"27.72\", \"3\", \"no\", \"southeast\", \"14001.1338\"], [\"63\", \"female\", \"23.085\", \"0\", \"no\", \"northeast\", \"14451.83515\"], [\"55\", \"female\", \"32.775\", \"2\", \"no\", \"northwest\", \"12268.63225\"], [\"23\", \"male\", \"17.385\", \"1\", \"no\", \"northwest\", \"2775.19215\"], [\"31\", \"male\
+.
+.
+.
 ```
+
+It can take many minutes for the query to be executed by the Notice command, so if the GetNotice command does not return anything, wait and try again.
+
 To make some dataset based on horizontal filter, as BRAID architecture*, filtering only one kind of gender:
 
 ```shell
