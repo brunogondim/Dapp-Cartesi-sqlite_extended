@@ -159,7 +159,7 @@ In order to start the server, run the following commands in a dedicated terminal
 $ cd sqlite-extended/server/
 $ python3 -m venv .env
 $ . .env/bin/activate
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 $ HTTP_DISPATCHER_URL="http://127.0.0.1:5004" gunicorn --reload --workers 1 --bind 0.0.0.0:5003 sqlite:app
 ```
 
