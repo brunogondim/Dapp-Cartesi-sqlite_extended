@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<!-- <form method="POST" action="/submit">
+    {{ form.csrf_token }}
+    {{ form.statement.label }} {{ form.statement(size=20) }}
+    <input type="submit" value="Go">
+</form>-->
+
+<form method="POST" action="/submit">
+    {{ form.csrf_token }}
+    Statement: <input type="text" name="statement">
+    <button type="submit">Go</button>
+</form>
+
+<form method="POST" action="/submit">
+    {{ form.csrf_token }}
+    GetNotice (Epoch): <input type="text" name="epoch">
+    <button type="submit">Go</button>
+</form>
+{% endblock content %}

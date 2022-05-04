@@ -6,6 +6,18 @@
     "configurations": [
         {
             "env": {
+                "HTTP_DISPATCHER_URL": "http://127.0.0.1:5005",
+            },
+            "cwd": "${workspaceFolder}/sqlite-extended/frontend",
+            "name": "Simple SQLite-extended front",
+            "type": "python",
+            "request": "launch",
+            "program": "../server/.env/bin/gunicorn",
+            "gevent": true,
+            "args": ["--timeout", "0", "--reload", "--workers", "1", "--bind=0.0.0.0:5006", "sqlite_front:app"],
+        },
+        {
+            "env": {
                 "HTTP_DISPATCHER_URL": "http://127.0.0.1:5004",
                 //"GEVENT_SUPPORT": "False"
             },
