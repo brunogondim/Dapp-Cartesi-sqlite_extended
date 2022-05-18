@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=container>
+    <div class="text-left">
+        <h3>Add Input</h3>
+    </div>
+    <div>
+        <form class="form-inline" method="POST" action="">
+            {{ form.csrf_token }}
+            <div class="form mx-sm-3 mb-2">
+                <label>Statement</label>
+                <input type="text" class="form-control" name="statement" placeholder="INSERT INTO Medical VALUES ('35', 'male', '32.4', '0', 'no', 'southeast', '10000.0000' )">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

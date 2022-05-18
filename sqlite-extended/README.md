@@ -116,13 +116,13 @@ Assuming the command "SELECT * FROM Medical" was performed, the response should 
 
 It can take many minutes for the query to be executed by the Notice command, so if the GetNotice command does not return anything, wait and try again.
 
-To make some dataset based on horizontal filter, as BRAID architecture*, filtering only one kind of gender:
+To make some dataset based on horizontal filter, as Amnesia flow*, filtering only one kind of gender:
 
 ```shell
 npx hardhat --network localhost sqlite:addInput --input "CREATE TABLE Horizontal_Filter (age text, sex text, bmi text, children text, smoker text, region text, charges text)"
 npx hardhat --network localhost sqlite:addInput --input "INSERT INTO Horizontal_Filter SELECT * FROM Medical WHERE sex='male'"
 ```
-to make datasets based on vertical filter, as BRAID architecture*, excluding some attributes:
+to make datasets based on vertical filter, as Amnesia flow*, excluding some attributes:
 
 ```shell
 npx hardhat --network localhost sqlite:addInput --input "CREATE TABLE Vertical_Filter (age text, bmi text, charges text)"
@@ -132,6 +132,18 @@ npx hardhat --network localhost sqlite:addInput --input "INSERT INTO Vertical_Fi
 *AMNESIA: A Technical Solution towards GDPR-compliant Machine Learning. January 2020. DOI:10.5220/0008916700210032. Conference: 6th International Conference on Information Systems Security and Privacy
 
 These datasets can be consumed by solutions inside or outside the cartesi machine, using only simple select statements, maintaining clear transparency of what data is actually being used.
+
+The front-End can be used to perform these queries. In order to start the Front-End, run the following commands in a dedicated terminal:
+
+```shell
+$ cd sqlite-extended/frontend/
+$ python3 -m venv .env
+$ . .env/bin/activate
+$ pip3 install -r requirements.txt
+$ export FLASK_APP=dapp
+$ python3 -m flask run
+```
+
 
 ## Advancing time
 
