@@ -143,7 +143,15 @@ $ pip3 install -r requirements.txt
 $ export FLASK_APP=dapp
 $ python3 -m flask run
 ```
-
+*if problem during python web3 installation occurs, try installing python3-dev
+```shell
+sudo apt-get install python3-dev
+```
+or upgrading apt
+```shell
+sudo apt update
+sudo apt upgrade
+```
 
 ## Advancing time
 
