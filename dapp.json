@@ -1,5 +1,5 @@
 {
   "fs": {
-    "files": ["sqlite.py", "entrypoint.sh"]
+    "files": ["sqlite.py", "data.db", "entrypoint.sh"]
   }
 }
